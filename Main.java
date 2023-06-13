@@ -19,40 +19,44 @@ public class Main {
         //Ввод данных: {"name":"Ivanov", "country":"Russia", "city":"Moscow", "age":"null"}
         //вывод: select * from students WHERE name=Ivanov AND country=Russia AND city=Moscow
 
-        StringBuilder stroka = new StringBuilder();
+        StringBuilder stroka = new StringBuilder(" ");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("name: ");
         String a = sc.nextLine();
         if (a.equals("null")) {
         } else {
-            stroka.append("name: ");
+            stroka.append("name= ");
             stroka.append(a);
+            stroka.append(" AND ");
         }
         System.out.print("country: ");
         String b = sc.nextLine();
         if (b.equals("null")){
         } else {
-            stroka.append(" country: ");
+            stroka.append("country:= ");
             stroka.append(b);
+            stroka.append(" AND ");
         }
         System.out.print("city: ");
         String c = sc.nextLine();
         if (c.equals("null")){
         } else {
-            stroka.append(" city: ");
+            stroka.append("city= ");
             stroka.append(c);
+            stroka.append(" AND ");
         }
         System.out.print("age: ");
         String d = sc.nextLine();
         if (d.equals("null")){
         } else {
-            stroka.append(" age: ");
+            stroka.append("age= ");
             stroka.append(d);
         }
-        stroka.append(".");
         sc.close();
-        System.out.println(stroka);
+        System.out.print("select * from students WHERE");
+        System.out.print(stroka);
+        System.out.print(".");
     }
 
     public static void task2(){
