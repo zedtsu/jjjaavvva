@@ -1,68 +1,102 @@
 package education;
 
+import java.io.FileWriter;
 import java.util.Scanner;
 
+// Шугалей Александр.
 public class Main {
     public static void main(String[] args) {
-        task3();
+        task1();
+        task2();
     }
 
-    public static int task1(int n){
-        // Сумма чисел от 1 до n.
-        int sum = 0;
-        for (int i = 0; i <= n; i++) {
-            sum += i;
-        }
-        return sum;
-    }
+    public static void task1(){
+        // 1) Дана строка sql-запроса "select * from students WHERE ".
+        // Сформируйте часть WHERE этого запроса, используя StringBuilder.
+        // Данные для фильтрации приведены ниже в виде json-строки.
+        //Если значение null, то параметр не должен попадать в запрос.
+        //String input_str = "{"name":"Ivanov", "country":"Russia", "city":"Moscow", "age":"null"}"
+        //Ввод данных: {"name":"Ivanov", "country":"Russia", "city":"Moscow", "age":"null"}
+        //вывод: select * from students WHERE name=Ivanov AND country=Russia AND city=Moscow
 
-    public static int taskk1(int n){
-        //Произведение чисел от 1 до n.
-        int F = 1;
-        for (int i = 1; i <= n; i++) {
-            F *= i;
+        StringBuilder stroka = new StringBuilder();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("name: ");
+        String a = sc.nextLine();
+        if (a.equals("null")) {
+        } else {
+            stroka.append("name: ");
+            stroka.append(a);
         }
-        return F;
+        System.out.print("country: ");
+        String b = sc.nextLine();
+        if (b.equals("null")){
+        } else {
+            stroka.append(" country: ");
+            stroka.append(b);
+        }
+        System.out.print("city: ");
+        String c = sc.nextLine();
+        if (c.equals("null")){
+        } else {
+            stroka.append(" city: ");
+            stroka.append(c);
+        }
+        System.out.print("age: ");
+        String d = sc.nextLine();
+        if (d.equals("null")){
+        } else {
+            stroka.append(" age: ");
+            stroka.append(d);
+        }
+        stroka.append(".");
+        sc.close();
+        System.out.println(stroka);
     }
 
     public static void task2(){
-        // Вывод всех простых чисел от 0 до 1000.
-        for (int i = 1; i <= 1000; i++) {
-            boolean flag = true;
-            for (int j = 2; j < i; j++) {
-                if (i % j == 0){
-                    flag = false;
+        // 2) Реализуйте алгоритм сортировки пузырьком числового массива,
+        // результат после каждой итерации запишите в лог-файл.
+
+
+        try {
+            FileWriter fw = new FileWriter("log.txt", false);
+            fw.write("Начало работы FileWriter. \n");
+            int[] array = new int[]{2, 1, 2, 7, 6, 1, 8};
+            fw.write("Создание массива. \n");
+            for (int i :
+                    array) {
+                System.out.print(i + " ");
+                fw.write("Вывод массива через цикл. \n");
+            }
+            boolean flag = false;
+            int temp;
+            while (!flag) {
+                flag = true;
+                for (int i = 0; i < array.length - 1; i++) {
+                    fw.write("Проверка элементов массива. \n");
+                    if (array[i] > array[i + 1]) {
+                        temp = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = temp;
+                        flag = false;
+                        fw.write("Сортировка массива. \n");
+                    }
                 }
             }
-            if (flag)
-                System.out.println(i);
+            System.out.println();
+            fw.write("Пробел. \n");
+            for (int i :
+                    array) {
+                System.out.print(i + " ");
+                fw.write("Вывод массива через цикл. \n");
+            }
+            fw.write("Закрытие FileWriter. \n");
+            fw.close();
         }
-    }
-
-    public static void task3(){
-        // Калькулятор.
-        System.out.println("Добро пожаловать в калькулятор!");
-        Scanner calc = new Scanner(System.in);
-        System.out.print("Введите операцию (+, -, /, *): ");
-        var op = calc.next();
-        System.out.println("Введите первое число: ");
-        double num1 = calc.nextInt();
-        System.out.println("Введите второе число: ");
-        double num2 = calc.nextInt();
-        System.out.println("Думаю..");
-        calc.close();
-        double res = 0;
-        if (op.equals("+")) {
-            res = num1 + num2;
-        } else if (op.equals("-")) {
-            res = num1 - num2;
-        } else if (op.equals("/")) {
-            res = num1 / num2;
-        } else if (op.equals("*")) {
-            res = num1 * num2;
-        } else {
-            System.out.println("Такого вида операции нет.");
+        catch (Exception e){
+            System.out.println("Ошибка!");
         }
-        System.out.printf("Ответ: %f.", res);
     }
 }
