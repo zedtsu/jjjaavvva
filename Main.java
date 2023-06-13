@@ -57,6 +57,7 @@ public class Main {
         System.out.print("select * from students WHERE");
         System.out.print(stroka);
         System.out.print(".");
+        System.out.println();
     }
 
     public static void task2(){
