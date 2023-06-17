@@ -1,107 +1,64 @@
 package education;
 
-import java.io.FileWriter;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-// Шугалей Александр.
+// Пусть дан произвольный список целых чисел.
+//1) Нужно удалить из него чётные числа
+//2) Найти минимальное значение
+//3) Найти максимальное значение
+//4) Найти среднее значение
+// Шугалей Александр
+
 public class Main {
     public static void main(String[] args) {
-        task1();
-        task2();
+        List<Integer> spisok = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            spisok.add(random.nextInt(10));
+        }
+        System.out.println(spisok);
     }
 
-    public static void task1(){
-        // 1) Дана строка sql-запроса "select * from students WHERE ".
-        // Сформируйте часть WHERE этого запроса, используя StringBuilder.
-        // Данные для фильтрации приведены ниже в виде json-строки.
-        //Если значение null, то параметр не должен попадать в запрос.
-        //String input_str = "{"name":"Ivanov", "country":"Russia", "city":"Moscow", "age":"null"}"
-        //Ввод данных: {"name":"Ivanov", "country":"Russia", "city":"Moscow", "age":"null"}
-        //вывод: select * from students WHERE name=Ivanov AND country=Russia AND city=Moscow
-
-        StringBuilder stroka = new StringBuilder(" ");
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("name: ");
-        String a = sc.nextLine();
-        if (a.equals("null")) {
-        } else {
-            stroka.append("name= ");
-            stroka.append(a);
-            stroka.append(" AND ");
+    public static void task1(List<Integer> spisok) {
+        for (int i = 0; i < spisok.size(); i++) {
+            if (spisok.get(i) % 2 == 0) {
+                spisok.remove(i);
+                i--;
+            }
         }
-        System.out.print("country: ");
-        String b = sc.nextLine();
-        if (b.equals("null")){
-        } else {
-            stroka.append("country:= ");
-            stroka.append(b);
-            stroka.append(" AND ");
-        }
-        System.out.print("city: ");
-        String c = sc.nextLine();
-        if (c.equals("null")){
-        } else {
-            stroka.append("city= ");
-            stroka.append(c);
-            stroka.append(" AND ");
-        }
-        System.out.print("age: ");
-        String d = sc.nextLine();
-        if (d.equals("null")){
-        } else {
-            stroka.append("age= ");
-            stroka.append(d);
-        }
-        sc.close();
-        System.out.print("select * from students WHERE");
-        System.out.print(stroka);
-        System.out.print(".");
-        System.out.println();
     }
 
-    public static void task2(){
-        // 2) Реализуйте алгоритм сортировки пузырьком числового массива,
-        // результат после каждой итерации запишите в лог-файл.
-
-
-        try {
-            FileWriter fw = new FileWriter("log.txt", false);
-            fw.write("Начало работы FileWriter. \n");
-            int[] array = new int[]{2, 1, 2, 7, 6, 1, 8};
-            fw.write("Создание массива. \n");
-            for (int i :
-                    array) {
-                System.out.print(i + " ");
-                fw.write("Вывод массива через цикл. \n");
+    public static int task2(List<Integer> spisok) {
+        int min = 1000000;
+        for (int i = 0; i < spisok.size(); i++) {
+            if (spisok.get(i) < min) {
+                min = spisok.get(i);
             }
-            boolean flag = false;
-            int temp;
-            while (!flag) {
-                flag = true;
-                for (int i = 0; i < array.length - 1; i++) {
-                    fw.write("Проверка элементов массива. \n");
-                    if (array[i] > array[i + 1]) {
-                        temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
-                        flag = false;
-                        fw.write("Сортировка массива. \n");
-                    }
-                }
-            }
-            System.out.println();
-            fw.write("Пробел. \n");
-            for (int i :
-                    array) {
-                System.out.print(i + " ");
-                fw.write("Вывод массива через цикл. \n");
-            }
-            fw.write("Закрытие FileWriter. \n");
-            fw.close();
         }
-        catch (Exception e){
-            System.out.println("Ошибка!");
-        }
+        return min;
     }
+
+    public static int task3(List<Integer> spisok) {
+        int max = 0;
+        for (int i = 0; i < spisok.size(); i++) {
+            if (spisok.get(i) > max) {
+                max = spisok.get(i);
+            }
+        }
+        return max;
+    }
+
+    public static double task4(List<Integer> spisok){
+        double sum = 0;
+        double mid = 0;
+        double len = spisok.size();
+        for (int i = 0; i < spisok.size(); i++) {
+            sum = sum + spisok.get(i);
+        }
+        mid = sum / spisok.size();
+        return mid;
+    }
+
 }
