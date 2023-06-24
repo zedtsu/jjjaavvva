@@ -1,77 +1,52 @@
 package education;
 
-// Даны два Deque, представляющие два целых числа.
-// Цифры хранятся в обратном порядке и каждый из их узлов содержит одну цифру.
-//1) Умножьте два числа и верните произведение в виде связанного списка.
-//2) Сложите два числа и верните сумму в виде связанного списка.
-//Одно или два числа могут быть отрицательными.
-//
-//Даны два Deque, цифры в обратном порядке.
-//[3,2,1,-] - пример Deque
-//[5,4,3]- пример второго Deque
-//1) -123 * 345 = -42 435
-//Ответ всегда - связный список, в обычном порядке
-//[-,4,2,4,3,5] - пример ответа
+// Реализуйте структуру телефонной книги с помощью HashMap.
+// Программа также должна учитывать, что во входной структуре будут повторяющиеся имена с разными телефонами,
+// их необходимо считать, как одного человека с разными телефонами.
+// Вывод должен быть отсортирован по убыванию числа телефонов.
+//Пример:
+//Иванов 1231234
+//Иванов 3456345
+//Иванов 5676585
+//Петров 12345
+//Петров 82332
+
+import java.util.*;
+
+import static java.util.Comparator.comparingInt;
 
 // Шугалей Александр
-
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.LinkedList;
-
 public class Main {
     public static void main(String[] args) {
-        ArrayDeque<String> dq1 = new ArrayDeque<>(Arrays.asList("3", "2", "-"));
-        ArrayDeque<String> dq2 = new ArrayDeque<>(Arrays.asList("5", "4", "3"));
-        System.out.println(dq1);
-        System.out.println(dq2);
-    }
+        ArrayList<String> list = new ArrayList<>();
+        ArrayList<Integer> list2 = new ArrayList<>();
+        Map<String, Integer> numBook = new HashMap<>();
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        while (flag) {
+            System.out.print("Введите имя(Для выхода - exit): ");
+            String name = sc.next();
+            if (name.equals("exit")) {
+                flag = false;
+            } else {
+                System.out.print("Ведите номер телефона: ");
+                int number = sc.nextInt();
+                if (numBook.containsKey(name)){
+                    list.add(name + " " + number);
+                } else
+                    numBook.put(name, number);
+            }
+        }
+        sc.close();
+        for (var item : numBook.entrySet()) {
 
-    public static LinkedList<Character> task1(ArrayDeque<String> dq1, ArrayDeque<String> dq2){
-        LinkedList<Character> ll = new LinkedList<>();
-        StringBuilder sb1 = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < dq1.size(); i++) {
-            sb1.append(dq1.pollLast());
+            list2.add(item.getValue());
         }
-        sb1.append(dq1.pop());
-        int a = Integer.parseInt(sb1.toString());
-        for (int i = 0; i < dq2.size(); i++) {
-            sb2.append(dq2.pollLast());
-        }
-        sb2.append(dq2.pop());
-        int b = Integer.parseInt(sb2.toString());
-        int res = a * b;
-        String ss = Integer.toString(res);
-        sb.append(ss);
-        for (int i = 0; i < sb.length(); i++) {
-            ll.add(sb.charAt(i));
-        }
-        return ll;
-    }
-
-    public static LinkedList<Character> task2(ArrayDeque<String> dq1, ArrayDeque<String> dq2){
-        LinkedList<Character> ll = new LinkedList<>();
-        StringBuilder sb1 = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < dq1.size(); i++) {
-            sb1.append(dq1.pollLast());
-        }
-        sb1.append(dq1.pop());
-        int a = Integer.parseInt(sb1.toString());
-        for (int i = 0; i < dq2.size(); i++) {
-            sb2.append(dq2.pollLast());
-        }
-        sb2.append(dq2.pop());
-        int b = Integer.parseInt(sb2.toString());
-        int res = a + b;
-        String ss = Integer.toString(res);
-        sb.append(ss);
-        for (int i = 0; i < sb.length(); i++) {
-            ll.add(sb.charAt(i));
-        }
-        return ll;
+        list2.sort(Comparator.naturalOrder());
+        System.out.println(numBook);
+        System.out.println("Люди с разными номерами.");
+        System.out.println(list);
+        System.out.println("Отсортированные телефоны.");
+        System.out.println(list2);
     }
 }
