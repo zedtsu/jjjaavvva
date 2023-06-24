@@ -33,13 +33,13 @@ public class Main {
                 int number = sc.nextInt();
                 if (numBook.containsKey(name)){
                     list.add(name + " " + number);
+                    list2.add(number);
                 } else
                     numBook.put(name, number);
             }
         }
         sc.close();
         for (var item : numBook.entrySet()) {
-
             list2.add(item.getValue());
         }
         list2.sort(Comparator.naturalOrder());
@@ -47,6 +47,8 @@ public class Main {
         System.out.println("Люди с разными номерами.");
         System.out.println(list);
         System.out.println("Отсортированные телефоны.");
-        System.out.println(list2);
+        for (var item: list2) {
+            System.out.println(item + " ");
+        }
     }
 }
