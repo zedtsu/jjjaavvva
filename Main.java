@@ -34,7 +34,7 @@ public class Main {
         int choise = 0;
         int value = 0;
         String value2 = "";
-        NoteBook noteBook1 = new NoteBook("Lenovo 22", 8, 512, "iMac", "Black");
+        NoteBook noteBook1 = new NoteBook("Lenovo 22", 8, 512, "Windows", "Black");
         NoteBook noteBook2 = new NoteBook("Philips 12e", 4, 1024, "Linux", "White");
         NoteBook noteBook3 = new NoteBook("Xiaomi 12 Lite", 16, 256, "Windows", "Grown");
         NoteBook noteBook4 = new NoteBook( "Samsung Samsa 12",32, 5120, "MacOS", "Pink");
@@ -59,47 +59,47 @@ public class Main {
     }
     public static void task(NoteBook noteBook1, NoteBook noteBook2, NoteBook noteBook3,
                             NoteBook noteBook4, int choise, int value, String value2){
-        System.out.print("Результаты: ");
+        System.out.println("Результаты: ");
         if (choise == 1) {
-            if (noteBook1.OZU >= value) {
+            if (noteBook1.OZU == value) {
                 System.out.println(noteBook1.name);
-            } else if (noteBook2.OZU >= value) {
+            } if (noteBook2.OZU == value) {
                 System.out.println(noteBook2.name);
-            } else if (noteBook3.OZU >= value) {
+            } if (noteBook3.OZU == value) {
                 System.out.println(noteBook3.name);
-            } else if (noteBook4.OZU >= value) {
+            } if (noteBook4.OZU == value) {
                 System.out.println(noteBook4.name);
-            } else System.out.println("Пусто.");
+            }
         } else if (choise == 2) {
-            if (noteBook1.HDD >= value) {
+            if (noteBook1.HDD == value) {
                 System.out.println(noteBook1.name);
-            } else if (noteBook2.HDD >= value) {
+            } if (noteBook2.HDD == value) {
                 System.out.println(noteBook2.name);
-            } else if (noteBook3.HDD >= value) {
+            } if (noteBook3.HDD == value) {
                 System.out.println(noteBook3.name);
-            } else if (noteBook4.HDD >= value) {
+            } if (noteBook4.HDD == value) {
                 System.out.println(noteBook4.name);
-            } else System.out.println("Пусто.");
+            }
         } else if (choise == 3) {
             if (noteBook1.OS.equals(value2)) {
                 System.out.println(noteBook1.name);
-            } else if (noteBook2.OS.equals(value2)) {
+            } if (noteBook2.OS.equals(value2)) {
                 System.out.println(noteBook2.name);
-            } else if (noteBook3.OS.equals(value2)) {
+            } if (noteBook3.OS.equals(value2)) {
                 System.out.println(noteBook3.name);
-            } else if (noteBook4.OS.equals(value2)) {
+            } if (noteBook4.OS.equals(value2)) {
                 System.out.println(noteBook4.name);
-            } else System.out.println("Пусто.");
+            }
         } else if (choise == 4) {
             if (noteBook1.color.equals(value2)) {
                 System.out.println(noteBook1.name);
-            } else if (noteBook2.color.equals(value2)) {
+            } if (noteBook2.color.equals(value2)) {
                 System.out.println(noteBook2.name);
-            } else if (noteBook3.color.equals(value2)) {
+            } if (noteBook3.color.equals(value2)) {
                 System.out.println(noteBook3.name);
-            } else if (noteBook4.color.equals(value2)) {
+            } if (noteBook4.color.equals(value2)) {
                 System.out.println(noteBook4.name);
-            } else System.out.println("Пусто.");
+            }
         }
     }
 }
